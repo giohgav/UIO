@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'db.dart'; // Importa la función de consulta desde db.dart
 import 'package:date_format/date_format.dart';
-import 'menu.dart';
+import 'main.dart';
 
 void main() {
   runApp(Datalogger());
@@ -16,7 +16,7 @@ class Datalogger extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         
-        appBar: AppBar( backgroundColor: Colors.black, title: Text( 'Datalogger', style: TextStyle( fontSize: 28, color: Colors.white, ), ), leading: IconButton( icon: Icon(Icons.arrow_back,color: Colors.white,size: 28,), onPressed: () { Navigator.pushReplacement( pantalla, MaterialPageRoute(builder: (context) => Menu()), ); }, ), ),
+        appBar: AppBar( backgroundColor: Colors.black, title: Text( 'Datalogger', style: TextStyle( fontSize: 28, color: Colors.white, ), ), leading: IconButton( icon: Icon(Icons.arrow_back,color: Colors.white,size: 28,), onPressed: () { Navigator.pushReplacement( pantalla, MaterialPageRoute(builder: (context) => MyApp()), ); }, ), ),
           body: Center(
           child: StreamBuilder<List<Map<String, dynamic>>>(
             stream: refrescaPantalla(), // Utiliza el stream de la consulta

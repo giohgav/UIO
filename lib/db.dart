@@ -10,19 +10,16 @@ Future<void> ejecutarConsulta(String sql) async {
 
   // Verifica si la tabla 'sensor' y 'logger' existe
 
-bool loggerTableExists = await database.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='logger';")
+  bool loggerTableExists = await database.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='logger';")
       .then((value) => value.isNotEmpty);
 
-bool sensorTableExists = await database.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='sensor';")
+  bool sensorTableExists = await database.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='sensor';")
       .then((value) => value.isNotEmpty);
 
-bool tablesExists = loggerTableExists && sensorTableExists;
+  bool tablesExist = loggerTableExists && sensorTableExists;
 
-// Ahora puedes usar 'tablesExist' para determinar si ambas tablas existen
-
-
-  if (!tablesExists) {
-    // Crea la tabla 'logger' si no existe
+  // Crea las tablas si no existen
+  if (!tablesExist) {
     await database.execute('''
       CREATE TABLE logger (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -32,9 +29,9 @@ bool tablesExists = loggerTableExists && sensorTableExists;
         min REAL,
         valor REAL
       )
-      ''');
-      // Crea la tabla 'sensor' si no existe
-      await database.execute('''
+    ''');
+
+    await database.execute('''
       CREATE TABLE sensor (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         id_sensor TEXT,
@@ -56,7 +53,11 @@ bool tablesExists = loggerTableExists && sensorTableExists;
   }
 
   // Ejecuta la consulta proporcionada
-  resultadosGlobales = await database.rawQuery(sql);
+  if (sql.toLowerCase().startsWith("select")) {
+    resultadosGlobales = await database.rawQuery(sql);
+  } else {
+    await database.execute(sql);
+  }
 
   await database.close();
 }

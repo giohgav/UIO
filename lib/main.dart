@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'random.dart'; // Importa el archivo random.dart
 
 void main() {
+  mainRandom();
   runApp(const MyApp());
 }
 

@@ -17,7 +17,7 @@ class Datalogger extends StatelessWidget {
       home: Scaffold(
         
         appBar: AppBar( backgroundColor: Colors.black, title: Text( 'Datalogger', style: TextStyle( fontSize: 28, color: Colors.white, ), ), leading: IconButton( icon: Icon(Icons.arrow_back,color: Colors.white,size: 28,), onPressed: () { Navigator.pushReplacement( pantalla, MaterialPageRoute(builder: (context) => MyApp()), ); }, ), ),
-          body: Center(
+          body: SingleChildScrollView(
           child: StreamBuilder<List<Map<String, dynamic>>>(
             stream: refrescaPantalla(), // Utiliza el stream de la consulta
             builder: (context, snapshot) {

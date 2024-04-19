@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/* import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
@@ -121,5 +121,89 @@ class _MyHomePageState extends State<MyHomePage> {
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+}
+ */
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(Inicio()); // cambiar titulo
+}
+
+class Inicio extends StatelessWidget {
+  // cambiar titulo
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          title: const Text(
+            'Datalogger',
+            style: TextStyle(
+              fontSize: 28,
+              color: Colors.white,
+            ),
+          ),
+        ),
+        body: Center(
+          child: FutureBuilder<List<dynamic>>(
+            future:
+                obtenerRegistros(), // Función para obtener los registros de la base de datos
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return CircularProgressIndicator(); // Muestra un indicador de carga mientras se obtienen los datos
+              } else if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              } else {
+                // Muestra el GridView con los registros obtenidos
+                return GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount:
+                        2, // Cambia el número de columnas según tu preferencia
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                  ),
+                  itemCount: snapshot.data?.length,
+                  itemBuilder: (context, index) {
+                    // Aquí puedes personalizar cómo se muestran los datos de cada registro
+                    return Card(
+                      child: Center(
+                        child: Text('${snapshot.data?[index]}'),
+                      ),
+                    );
+                  },
+                );
+              }
+            },
+          ),
+        ),
+        bottomNavigationBar: BottomAppBar(
+          color: Colors.black,
+          child: Container(
+            child: const Center(
+              child: Text(
+                'UIO',
+                style: TextStyle(
+                  fontSize: 28,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  // Función para obtener los registros de la base de datos
+  Future<List<dynamic>> obtenerRegistros() async {
+    // Lógica para obtener los registros de la base de datos
+    // Puedes usar el paquete de tu base de datos para ejecutar consultas
+    // Por ejemplo:
+    // final registros = await tuBaseDeDatos.query('tu_tabla');
+    // return registros;
+    return List.generate(
+        10, (index) => 'Registro $index'); // Ejemplo de registros falsos
   }
 }

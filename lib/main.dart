@@ -1,6 +1,7 @@
 /* import 'package:flutter/material.dart';
 
 void main() {
+  mainRandom();
   runApp(const MyApp());
 }
 
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'My First Proyect'),
+      home: const MyHomePage(title: 'Mi primer proyecto'),
     );
   }
 }

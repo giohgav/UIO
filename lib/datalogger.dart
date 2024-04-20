@@ -2,10 +2,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'db.dart'; // Importa la función de consulta desde db.dart
 import 'package:date_format/date_format.dart';
-import 'main.dart';
+import 'menu.dart';
 
 void main() {
-  runApp(Datalogger());
+  runApp(MaterialApp(
+    home: Datalogger(),
+  ));
 }
 
 class Datalogger extends StatelessWidget {
@@ -16,7 +18,7 @@ class Datalogger extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         
-        appBar: AppBar( backgroundColor: Colors.black, title: Text( 'Datalogger', style: TextStyle( fontSize: 28, color: Colors.white, ), ), leading: IconButton( icon: Icon(Icons.arrow_back,color: Colors.white,size: 28,), onPressed: () { Navigator.pushReplacement( pantalla, MaterialPageRoute(builder: (context) => MyApp()), ); }, ), ),
+        appBar: AppBar( backgroundColor: Colors.black, title: Text( 'Datalogger', style: TextStyle( fontSize: 28, color: Colors.white, ), ), leading: IconButton( icon: Icon(Icons.arrow_back,color: Colors.white,size: 28,), onPressed: () { Navigator.of(pantalla).pushReplacement(MaterialPageRoute(builder: (context) => Menu()), ); }, ), ),
           body: SingleChildScrollView(
           child: StreamBuilder<List<Map<String, dynamic>>>(
             stream: refrescaPantalla(), // Utiliza el stream de la consulta
@@ -60,7 +62,7 @@ Stream<List<Map<String, dynamic>>> refrescaPantalla() async* {
     await Future.delayed(Duration(seconds: 5)); // Actualiza cada 5 segundos
 
     await ejecutarConsulta('SELECT * FROM logger'); // Realiza la consulta a la BD
-
+    //await ejecutarConsulta('SELECT * FROM logger WHERE valor > max OR valor < min'); // Realiza la consulta a la BD
     yield resultadosGlobales; // Devuelve los resultados como un stream
   }
 }

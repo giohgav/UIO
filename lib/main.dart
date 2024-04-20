@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
+/* import 'package:flutter/material.dart';
+import 'random.dart'; // Importa el archivo random.dart
 
 void main() {
+  mainRandom();
   runApp(const MyApp());
 }
 
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Mi primer proyecto'),
     );
   }
 }
@@ -120,6 +122,83 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+ */
+
+import 'package:flutter/material.dart';
+import 'db.dart';
+import 'menu.dart';
+
+//import 'datalogger.dart'; // Importa las pantallas necesarias
+//import 'alertas.dart';
+//import 'rango.dart';
+
+void main() => runApp(Inicio());
+
+class Inicio extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: PaginaInicio(),
+      routes: {
+        '/menu': (context) => Menu(),
+        //'/datalogger': (context) => DataLogger(),
+        //'/alertas': (context) => Alertas(),
+        //'/rango': (context) => Rango(),
+      },
+    );
+  }
+}
+class PaginaInicio extends StatelessWidget {
+  final TextEditingController idController = TextEditingController();
+  final TextEditingController codigoController = TextEditingController();
+
+  Future<void> acceder(BuildContext context) async {
+    String idSensor = idController.text;
+    String codigoSensor = codigoController.text;
+    await ejecutarConsulta(
+        "SELECT * FROM sensor WHERE id_sensor = '$idSensor' AND codigo_sensor = '$codigoSensor'");
+ if (resultadosGlobales.isNotEmpty) {
+      Navigator.pushReplacementNamed(context, '/menu');
+    } else {
+      showDialog(
+            context: context,
+            builder: (_) => AlertDialog(
+              title: Text('Error'),
+              content: Text('No existe el sensor'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: Text('Aceptar'),
+                ),
+              ],
+            ),
+          );
+  }
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar( backgroundColor: Colors.black, title: Text( 'Menu', style: TextStyle( fontSize: 28 ,color: Colors.white, ), ), ),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextField(controller: idController, decoration: InputDecoration(labelText: 'ID Sensor')),
+            TextField(controller: codigoController, decoration: InputDecoration(labelText: 'Código Sensor')),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () => acceder(context),
+              child: Text('Acceder'),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar( color: Colors.black, child: Container( child: Center( child: Text( 'UIO', style: TextStyle(fontSize: 28, color: Colors.white), ), ), ), ),
     );
   }
 }

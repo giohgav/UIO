@@ -182,7 +182,7 @@ class PaginaInicio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar( backgroundColor: Colors.black, title: Text( 'Menu', style: TextStyle( fontSize: 28 ,color: Colors.white, ), ), ),
+      appBar: AppBar( backgroundColor: Colors.black, title: Text( 'Inicio', style: TextStyle( fontSize: 28 ,color: Colors.white, ), ), ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(

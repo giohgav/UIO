@@ -38,6 +38,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   sqflite: ^2.3.2
   path: ^1.8.3
+  syncfusion_flutter_gauges: ^25.1.40
 
 dev_dependencies:
   flutter_test:

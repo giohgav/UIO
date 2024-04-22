@@ -11,8 +11,6 @@ void main() {
 }
 
 class Datalogger extends StatelessWidget {
-  
-
   @override
   Widget build(BuildContext pantalla) {
     return MaterialApp(
@@ -65,4 +63,5 @@ Stream<List<Map<String, dynamic>>> refrescaPantalla() async* {
     //await ejecutarConsulta('SELECT * FROM logger WHERE valor > max OR valor < min'); // Realiza la consulta a la BD
     yield resultadosGlobales; // Devuelve los resultados como un stream
   }
-}
+} 
+

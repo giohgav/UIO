@@ -130,12 +130,18 @@ class _MyHomePageState extends State<MyHomePage> {
 import 'package:flutter/material.dart';
 import 'db.dart';
 import 'menu.dart';
+import 'random.dart'; // Importa el archivo random.dart
 
 //import 'datalogger.dart'; // Importa las pantallas necesarias
 //import 'alertas.dart';
 //import 'rango.dart';
 
-void main() => runApp(Inicio());
+
+
+void main() {
+  mainRandom();
+  runApp(Inicio());
+}
 
 class Inicio extends StatelessWidget {
 

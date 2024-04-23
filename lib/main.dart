@@ -132,6 +132,7 @@ import 'db.dart';
 import 'menu.dart';
 import 'random.dart'; // Importa el archivo random.dart
 
+
 //import 'datalogger.dart'; // Importa las pantallas necesarias
 //import 'alertas.dart';
 //import 'rango.dart';
@@ -140,6 +141,7 @@ import 'random.dart'; // Importa el archivo random.dart
 
 void main() {
   mainRandom();
+
   runApp(Inicio());
 }
 

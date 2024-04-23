@@ -5,7 +5,7 @@ import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'alertas.dart';
 import 'datalogger.dart';
 import 'alerts.dart'; // Importa el archivo random.dart
-//import 'rango.dart';
+import 'rango.dart';
 
 
 void main() {
@@ -83,7 +83,7 @@ class Menu extends StatelessWidget {
             return SizedBox();
           },
         ),
-        bottomNavigationBar: BottomAppBar( color: Colors.black, child: Container( child: Row( mainAxisAlignment: MainAxisAlignment.spaceAround, children: <Widget>[ IconButton( icon: Icon(Icons.notifications, color: Colors.white), onPressed: () {Navigator.push(pantalla, MaterialPageRoute(builder: (context) => Alertas())); }, ), IconButton( icon: Icon(Icons.assignment, color: Colors.white), onPressed: () {Navigator.push(pantalla, MaterialPageRoute(builder: (context) => Datalogger()));}, ), IconButton( icon: Icon(Icons.settings, color: Colors.white), onPressed: () {/* Navigator.push(pantalla, MaterialPageRoute(builder: (context) => Rango())); */}, ), ], ), ), ),
+        bottomNavigationBar: BottomAppBar( color: Colors.black, child: Container( child: Row( mainAxisAlignment: MainAxisAlignment.spaceAround, children: <Widget>[ IconButton( icon: Icon(Icons.notifications, color: Colors.white), onPressed: () {Navigator.push(pantalla, MaterialPageRoute(builder: (context) => Alertas())); }, ), IconButton( icon: Icon(Icons.assignment, color: Colors.white), onPressed: () {Navigator.push(pantalla, MaterialPageRoute(builder: (context) => Datalogger()));}, ), IconButton( icon: Icon(Icons.settings, color: Colors.white), onPressed: () { Navigator.push(pantalla, MaterialPageRoute(builder: (context) => Rango())); }, ), ], ), ), ),
       ),
     );
   }

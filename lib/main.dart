@@ -33,7 +33,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+<<<<<<< HEAD
       home: const MyHomePage(title: 'Mi primer proyecto'),
+=======
+      home: const MyHomePage(title: 'Mi primer proyecto')
+>>>>>>> 29ca526c1d0ba549cd15807ced58d2a29e13504b
     );
   }
 }

@@ -5,13 +5,10 @@ import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'alertas.dart';
 import 'datalogger.dart';
 import 'alerts.dart'; // Importa el archivo random.dart
-import 'rango.dart';
-
+//import 'rango.dart';
 
 void main() {
-   mainAlerts(); 
-   runApp(Menu());
-
+   runApp(Menu()); 
 } 
 
 class Menu extends StatelessWidget {

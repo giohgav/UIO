@@ -4,7 +4,6 @@ import 'db.dart'; // Importa la función de consulta desde db.dart
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'alertas.dart';
 import 'datalogger.dart';
-import 'alerts.dart'; // Importa el archivo random.dart
 //import 'rango.dart';
 
 void main() {
